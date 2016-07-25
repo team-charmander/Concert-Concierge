@@ -8,4 +8,6 @@
     <string name="concert_venue">Venue Info</string>
     <string name="concert_time">Time</string>
     <string name="zip">Enter zip code</string>
+    <string name="openweather_api">1908e7a47dd061ed22e0faacfd678ba8</string>
+    <string name="openweather_url">http://api.openweathermap.org/data/2.5/forecast/daily?q=</string>
 </resources>

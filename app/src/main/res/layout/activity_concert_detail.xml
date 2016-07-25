@@ -53,5 +53,14 @@
         android:textStyle="bold"
         android:text="@string/concert_venue" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/weather_txt"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/concert_image"
+        android:layout_marginBottom="72dp" />
+
 
 </RelativeLayout>
