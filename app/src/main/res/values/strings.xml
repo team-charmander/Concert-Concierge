@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">ConcertConcierge</string>
-
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="concert_title">Find a Concert Tonight!</string>
+    <string name="find_concerts">Find Concerts!</string>
+    <string name="logo">logo</string>
+    <string name="concert_name">Name of Artist</string>
+    <string name="concert_date">Date of show</string>
+    <string name="concert_venue">Venue Info</string>
+    <string name="concert_time">Time</string>
+    <string name="zip">Enter zip code</string>
 </resources>

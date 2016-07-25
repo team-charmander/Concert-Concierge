@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <ImageView
+        android:layout_width="192dp"
+        android:layout_height="108dp"
+        android:padding="10dp"
+        android:src="@drawable/concertt"
+        android:id="@+id/concert_image"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:paddingTop="20dp"
+        android:textStyle="bold"
+        android:paddingBottom="6dp"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:text="@string/concert_name"
+        android:id="@+id/concert_artist"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:text="@string/concert_date"
+        android:paddingBottom="6dp"
+        android:id="@+id/concert_date"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/concert_venue"
+        android:text="@string/concert_venue"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+
