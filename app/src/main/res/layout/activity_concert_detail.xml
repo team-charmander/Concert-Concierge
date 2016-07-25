@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/concert_image"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/concertt" />
+        android:src="@drawable/concerttwo" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

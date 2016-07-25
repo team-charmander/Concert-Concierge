@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -19,24 +18,12 @@
         android:paddingBottom="24dp"
         android:text="@string/concert_title"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv">
-
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cv">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:layout_below="@id/concert_title"
         android:layout_height="wrap_content">
 
     <ImageView
@@ -44,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="6dp"
         android:id="@+id/concert_image"
-        android:src="@drawable/concertt"/>
+        android:src="@drawable/concerttwo"/>
 
     <LinearLayout
          android:layout_width="wrap_content"
@@ -70,11 +57,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/concert_txtview_venue"
         android:text="@string/concert_venue"/>
+    </LinearLayout>
 
     </LinearLayout>
-        </LinearLayout>
-        </RelativeLayout>
-        </android.support.v7.widget.CardView>
-    </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
 
-</LinearLayout>
