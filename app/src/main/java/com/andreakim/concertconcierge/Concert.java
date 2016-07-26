@@ -9,10 +9,20 @@ public class Concert {
     String date;
     String time;
 
-    public Concert(String name, String venue, String date, String time) {
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    String city;
+
+    public Concert(String name, String venue, String city, String time) {
         this.name = name;
         this.venue = venue;
-        this.date = date;
+        this.city = city;
         this.time = time;
     }
 
