@@ -1,8 +1,7 @@
 package com.andreakim.concertconcierge;
 
-import android.location.Location;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import android.support.annotation.*;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.google.android.gms.common.ConnectionResult;
@@ -11,20 +10,23 @@ import com.google.android.gms.location.LocationServices;
 
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+
     private GoogleApiClient mGoogleApiClient;
 
-    //got the following method from
-    // https://developer.android.com/training/location/retrieve-current.html
+    //  got the following method from
+    //  https://developer.android.com/training/location/retrieve-current.html
+    //  (not working)
 
-//    @Override
-//    public void onConnected(Bundle connectionHint) {
-//        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-//                mGoogleApiClient);
-//        if (mLastLocation != null) {
-//            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-//            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
-//        }
- //   }
+    //  @Override
+    //  public void onConnected(Bundle connectionHint) {
+    //  mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+    //  mGoogleApiClient);
+    //  if (mLastLocation != null) {
+    //  mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
+    //  mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+    //      }
+    // }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +54,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 }

@@ -1,51 +1,96 @@
 package com.andreakim.concertconcierge;
 
 /**
- * Created by andreakim on 7/25/16.
+ * Created by tony on 7/21/16.
  */
 public class Concert {
-    String name;
-    String venue;
-    String date;
 
-    String time;
+    //identification
+    private int id;
+    private String displayName;
+    private Double popularity;
 
-    public Concert(String name, String venue, String date, String time) {
-        this.name = name;
-        this.venue = venue;
-        this.date = date;
-        this.time = time;
+    //location
+    private String city;
+    private Double latitude;
+    private Double longitude;
+
+    //time and date
+    private Double startTime;
+    private Double startDate;
+
+    public Concert(int id, String displayName, Double popularity, String city, Double latitude, Double longitude, Double startTime, Double startDate) {
+        this.id = id;
+        this.displayName = displayName;
+        this.popularity = popularity;
+        this.city = city;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.startTime = startTime;
+        this.startDate = startDate;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getVenue() {
-        return venue;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setVenue(String venue) {
-        this.venue = venue;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getDate() {
-        return date;
+    public Double getPopularity() {
+        return popularity;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
     }
 
-    public String getTime() {
-        return time;
+    public String getCity() {
+        return city;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Double startTime) {
+        this.startTime = startTime;
+    }
+
+    public Double getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Double startDate) {
+        this.startDate = startDate;
     }
 }
