@@ -7,7 +7,6 @@ public class Concert {
     String name;
     String venue;
     String date;
-
     String time;
 
     public Concert(String name, String venue, String date, String time) {
