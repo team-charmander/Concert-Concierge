@@ -1,8 +1,7 @@
 package com.andreakim.concertconcierge;
 
-/**
- * Created by tony on 7/21/16.
- */
+// class made by Tony
+
 public class Concert {
 
     //identification
