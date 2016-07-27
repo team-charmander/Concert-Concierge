@@ -7,5 +7,6 @@
     <string name="concert_date">Date of show</string>
     <string name="concert_venue">Venue Info</string>
     <string name="concert_time">Time</string>
+    <string name="concert_city">City</string>
     <string name="zip">Enter zip code</string>
 </resources>
