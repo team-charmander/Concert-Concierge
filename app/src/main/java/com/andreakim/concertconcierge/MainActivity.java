@@ -190,24 +190,24 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                 city = innerObject.getJSONObject("location").getString("city");
                                 event_id = innerObject.getInt("id");
 
-//                                JSONArray jsonArray_forArtist = innerObject.getJSONArray("performance");
-//                                JSONObject innerObject_artist = jsonArray_forArtist.getJSONObject(0);
-//                                artist = innerObject_artist.getJSONObject("artist").getString("displayName");
-//                                JSONObject images_JsonObject = JsonParser.getImage(artist);
-//                                JSONArray images_JsonArray = images_JsonObject.getJSONObject("artist").getJSONArray("image");
-//                                JSONObject image_medium_object = images_JsonArray.getJSONObject(1);
-//                                image_url = image_medium_object.getString("#text");
+                                JSONArray jsonArray_forArtist = innerObject.getJSONArray("performance");
+                                JSONObject innerObject_artist = jsonArray_forArtist.getJSONObject(0);
+                                artist = innerObject_artist.getJSONObject("artist").getString("displayName");
+                                JSONObject images_JsonObject = JsonParser.getImage(artist);
+                                JSONArray images_JsonArray = images_JsonObject.getJSONObject("artist").getJSONArray("image");
+                                JSONObject image_medium_object = images_JsonArray.getJSONObject(1);
+                                image_url = image_medium_object.getString("#text");
                                 Bitmap bitmap = null;
-//                                OkHttpClient client = new OkHttpClient();
-//                                Request request = new Request.Builder().url(image_url).build();
-//                                Response response = client.newCall(request).execute();
-//                                byte[] image = new byte[0];
-//                                image = response.body().bytes();
-//
-//
-//                                if (image != null && image.length > 0) {
-//                                    bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-//                                }
+                                OkHttpClient client = new OkHttpClient();
+                                Request request = new Request.Builder().url(image_url).build();
+                                Response response = client.newCall(request).execute();
+
+                                byte[] image = response.body().bytes();
+
+
+                                if (image != null && image.length > 0) {
+                                    bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+                                }
                                 Concert concert = new Concert(name, venue, city, time, bitmap,event_id);
                                 list_concerts.add(concert);
 
