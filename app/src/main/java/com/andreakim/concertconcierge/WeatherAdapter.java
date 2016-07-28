@@ -15,7 +15,7 @@ public abstract class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter
 
     private ArrayList<Weather> weathers;
 
-    public WeatherAdapter(ArrayList<Weather>weathers){
+    public WeatherAdapter(ArrayList<Weather> weathers){
                           this.weathers=weathers;
     }
 
