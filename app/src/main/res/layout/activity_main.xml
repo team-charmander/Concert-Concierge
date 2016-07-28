@@ -24,12 +24,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
+
         android:id="@+id/editTxt_search"
         />
-=======
-        android:id="@+id/editTxt_search"/>
->>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
 
     <Button
         style="?android:attr/buttonStyleSmall"

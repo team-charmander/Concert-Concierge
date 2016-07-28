@@ -22,29 +22,18 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+
+
+
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:support-v4:24.1.1'
-<<<<<<< HEAD
-    compile 'com.android.support:cardview-v7:24.0.+'
-    compile 'com.android.support:recyclerview-v7:24.0.+'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
-    compile 'com.google.android.gms:play-services-places:9.2.1'
-    compile 'com.google.android.gms:play-services-maps:9.2.1'
-=======
-
-
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.google.android.gms:play-services:9.2.1'
     compile 'com.android.support:cardview-v7:24.1.1'
     compile 'com.android.support:recyclerview-v7:24.1.1'
-
     compile 'com.google.android.gms:play-services-places:9.2.1'
     compile 'com.google.android.gms:play-services-location:9.2.1'
-
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
     compile 'com.google.android.gms:play-services-maps:9.2.1'
     compile 'com.google.android.gms:play-services-identity:9.2.1'
->>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
-
 }

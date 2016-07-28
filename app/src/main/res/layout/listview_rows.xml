@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-=======
-
     <android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,24 +9,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     card_view:cardCornerRadius="5dp">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:layout_width="match_parent"
->>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    card_view:cardCornerRadius="5dp">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-<<<<<<< HEAD
-=======
-
->>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,12 +18,10 @@
                 android:layout_width="192dp"
                 android:layout_height="108dp"
                 android:padding="10dp"
-<<<<<<< HEAD
-                android:src="@drawable/concertt"
-=======
-                android:src="@drawable/concerttwo"
->>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
-                android:id="@+id/concert_image"/>
+                android:src="@drawable/concerttwo"/>
+
+
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/concert_name"
                     android:id="@+id/concert_artist"/>
-<<<<<<< HEAD
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,47 +61,17 @@
                     android:textStyle="bold"
                     android:layout_height="wrap_content"/>
 
-=======
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:text="@string/concert_time"
-                    android:paddingBottom="6dp"
-                    android:id="@+id/concert_time"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/concert_venue"
-        android:text="@string/concert_venue"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/concert_city"
-            android:text="@string/concert_city"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content" />
 
 
 
 
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+
+
+
+   </LinearLayout>
+
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
 
 
->>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
-
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-</android.support.v7.widget.CardView>
