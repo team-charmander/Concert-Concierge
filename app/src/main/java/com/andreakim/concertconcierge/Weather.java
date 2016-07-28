@@ -10,9 +10,12 @@ public class Weather {
     public long mLat;
     public long mLon;
 
-
-
-
+    public Weather(String cityName, int currentTemp, long mLat, long mLon) {
+        this.cityName = cityName;
+        this.currentTemp = currentTemp;
+        this.mLat = mLat;
+        this.mLon = mLon;
+    }
 
     @Override
     public String toString() {

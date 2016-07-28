@@ -1,64 +1,24 @@
 package com.andreakim.concertconcierge;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by andreakim on 7/25/16.
  */
 public class Concert {
+    String name;
+    String venue;
+    String date;
+    String time;
+    Bitmap image;
 
-    //identification
-    private int id;
-    private String displayName;
-
-
-
-    //location
-    private String city;
-    private Double latitude;
-    private Double longitude;
-
-    //time and date
-    private Double startTime;
-    private Double startDate;
-
-    public Concert(int id, String displayName, String city, Double latitude, Double longitude, Double startTime, Double startDate) {
-        this.id = id;
-        this.displayName = displayName;
-        this.city = city;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.startTime = startTime;
-        this.startDate = startDate;
+    public Bitmap getImage() {
+        return image;
     }
 
-    @Override
-    public String toString() {
-        return "Concert{" +
-                "id=" + id +
-                ", displayName='" + displayName + '\'' +
-                ", city='" + city + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", startTime=" + startTime +
-                ", startDate=" + startDate +
-                '}';
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
 
     public String getCity() {
         return city;
@@ -68,35 +28,44 @@ public class Concert {
         this.city = city;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    String city;
+
+    public Concert(String name, String venue, String city, String time) {
+        this.name = name;
+        this.venue = venue;
+        this.city = city;
+        this.time = time;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public String getName() {
+        return name;
     }
 
-    public Double getLongitude() {
-        return longitude;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public String getVenue() {
+        return venue;
     }
 
-    public Double getStartTime() {
-        return startTime;
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
-    public void setStartTime(Double startTime) {
-        this.startTime = startTime;
+    public String getDate() {
+        return date;
     }
 
-    public Double getStartDate() {
-        return startDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setStartDate(Double startDate) {
-        this.startDate = startDate;
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
