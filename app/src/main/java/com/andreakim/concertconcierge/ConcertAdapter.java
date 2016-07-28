@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ViewHold
         holder.tv_time.setText(concerts.get(position).getTime());
         holder.tv_venue.setText(concerts.get(position).getVenue());
         holder.tv_city.setText(concerts.get(position).getCity());
+        holder.tv_image.setImageBitmap(concerts.get(position).getImage());
 
     }
 
@@ -43,6 +45,7 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_name_artist, tv_time, tv_venue,tv_city;
+        private ImageView tv_image;
         public ViewHolder(View view) {
             super(view);
 
@@ -50,6 +53,7 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ViewHold
             tv_time = (TextView)view.findViewById(R.id.concert_time);
             tv_venue = (TextView)view.findViewById(R.id.concert_venue);
             tv_city=(TextView)view.findViewById(R.id.concert_city);
+            tv_image = (ImageView)view.findViewById(R.id.concert_image);
         }
     }
 }

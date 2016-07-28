@@ -1,5 +1,7 @@
 package com.andreakim.concertconcierge;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by andreakim on 7/25/16.
  */
@@ -7,7 +9,17 @@ public class Concert {
     String name;
     String venue;
     String date;
+
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
+
     String time;
+    Bitmap image;
 
     public String getCity() {
         return city;
@@ -19,11 +31,12 @@ public class Concert {
 
     String city;
 
-    public Concert(String name, String venue, String city, String time) {
+    public Concert(String name, String venue, String city, String time,Bitmap image) {
         this.name = name;
         this.venue = venue;
         this.city = city;
         this.time = time;
+        this.image = image;
     }
 
     public String getName() {

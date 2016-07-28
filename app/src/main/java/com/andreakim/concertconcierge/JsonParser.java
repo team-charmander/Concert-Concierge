@@ -52,4 +52,23 @@ public class JsonParser {
 
     }
 
+    public static JSONObject getImage(String artist){
+        try{
+            OkHttpClient client = new OkHttpClient();
+            String url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+artist+"&api_key=01c216d809a51da0b30105d35eb76ac8&format=json";
+
+            Request request = new Request.Builder()
+                    .url(url).build();
+
+            response = client.newCall(request).execute();
+            return new JSONObject(response.body().string());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
 }
