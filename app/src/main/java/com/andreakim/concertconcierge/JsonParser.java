@@ -4,6 +4,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.net.URL;
+>>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,8 +21,14 @@ public class JsonParser {
     private static Response response;
 
     public static JSONObject getMetroID(String place){
+<<<<<<< HEAD
         try {
             OkHttpClient client = new OkHttpClient();
+=======
+                try{
+            OkHttpClient client = new OkHttpClient();
+
+>>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
             String metro_id_url = "http://api.songkick.com/api/3.0/search/locations.json?query="+place+"&apikey=KTHRla0QWSbiVtF0";
             Request request = new Request.Builder()
                     .url(metro_id_url).build();
@@ -36,7 +46,13 @@ public class JsonParser {
     public static JSONObject getConcertsFromApi(int metro_id){
         try {
             OkHttpClient client = new OkHttpClient();
+<<<<<<< HEAD
             String Main_Url = "http://api.songkick.com/api/3.0/metro_areas/"+metro_id+"/calendar.json?apikey=KTHRla0QWSbiVtF0";
+=======
+
+            String Main_Url = "http://api.songkick.com/api/3.0/metro_areas/"+metro_id+"/calendar.json?apikey=KTHRla0QWSbiVtF0";
+
+>>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
             Request request = new Request.Builder()
                     .url(Main_Url).build();
 
@@ -51,6 +67,10 @@ public class JsonParser {
 
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
     public static JSONObject getImage(String artist){
         try{
             OkHttpClient client = new OkHttpClient();
@@ -67,6 +87,7 @@ public class JsonParser {
         }
         return null;
     }
+<<<<<<< HEAD
     public static JSONObject getWeatherTextFromApi(int temp) {
 
 
@@ -89,3 +110,9 @@ public class JsonParser {
 
         }
 
+=======
+
+
+
+}
+>>>>>>> a297e3f6686bad91711cc25a23297e0a30dc3048
