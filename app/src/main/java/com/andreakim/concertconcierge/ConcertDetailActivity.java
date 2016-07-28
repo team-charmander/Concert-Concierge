@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 public class ConcertDetailActivity extends AppCompatActivity {
 
-    String name;
+    String name,id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
