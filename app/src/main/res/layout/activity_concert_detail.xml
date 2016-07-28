@@ -1,57 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.andreakim.concertconcierge.ConcertDetailActivity">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/concert_image"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/concertt" />
-    <TextView
+    android:layout_height="wrap_content"
+    android:id="@+id/card_item"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    card_view:cardCornerRadius="5dp">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:text="@string/concert_name"
-        android:layout_below="@id/concert_image"
-        android:id="@+id/concert_txtview_name"/>
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.andreakim.concertconcierge.ConcertDetailActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:id="@+id/concert_txtview_date"
-        android:textStyle="bold"
-        android:layout_below="@id/concert_txtview_name"
-        android:text="@string/concert_date" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/concert_image"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/concertt" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:text="@string/concert_name"
+            android:layout_below="@id/concert_image"
+            android:id="@+id/concert_txtview_name"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:textStyle="bold"
-        android:id="@+id/concert_txtview_time"
-        android:text="@string/concert_time"
-        android:layout_below="@id/concert_txtview_date"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:id="@+id/concert_txtview_date"
+            android:textStyle="bold"
+            android:layout_below="@id/concert_txtview_name"
+            android:text="@string/concert_date" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:id="@+id/concert_txtview_venue"
-        android:layout_below="@id/concert_txtview_time"
-        android:textStyle="bold"
-        android:text="@string/concert_venue" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:id="@+id/concert_txtview_time"
+            android:text="@string/concert_time"
+            android:layout_below="@id/concert_txtview_date"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:id="@+id/concert_txtview_venue"
+            android:textStyle="bold"
+            android:text="@string/concert_venue"
+            android:layout_below="@+id/concert_txtview_time"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="City"
+            android:padding="6dp"
+            android:id="@+id/concert_txtcity"
+            android:layout_below="@+id/concert_txtview_venue"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Popularity"
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:id="@+id/concert_txtPopularity"
+            android:layout_below="@+id/concert_txtcity"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="URi"
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:id="@+id/concert_txtUri"
+            android:layout_below="@+id/concert_txtPopularity"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Age+"
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:id="@+id/concert_txtAge"
+            android:layout_below="@+id/concert_txtUri"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:id="@+id/concert_txtPhone"
+            android:layout_below="@+id/concert_txtAge"
+            android:layout_alignParentStart="true" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
