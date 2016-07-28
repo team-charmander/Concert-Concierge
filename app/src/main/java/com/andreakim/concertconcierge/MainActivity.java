@@ -25,11 +25,15 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+
+import android.os.AsyncTask;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 
 
 import java.util.ArrayList;
@@ -60,43 +64,33 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.Arrays;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     String mLatitudeText;
     String mLongitudeText;
     Location mLastLocation;
-    private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
-    String lat,lon;
-
-
-    synchronized void buildGoogleApiClient() {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
-    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        buildGoogleApiClient();
+    public void onConnectionSuspended(int i) {
+
     }
 
-    protected void onStart() {
-        mGoogleApiClient.connect();
-        super.onStart();
-    }
-=======
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-
+    String lat,lon;
     private RecyclerView recyclerView;
     private ConcertAdapter concertAdapter;
     static private ArrayList<Concert> list_concerts;
@@ -109,6 +103,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     int place_picker_request = 1;
     Intent mConcertDetailIntent;
 
+
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
 
     //
     @Override
@@ -127,7 +126,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         } catch (Exception e) {
             e.printStackTrace();
         }
->>>>>>> ericaschulz-master
+
+
+
+        txt_search = (TextView)findViewById(R.id.editTxt_search);
+        btn_search = (Button)findViewById(R.id.btn_search);
 
 
         btn_search.setOnClickListener(new View.OnClickListener() {
@@ -140,23 +143,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
 
-    }
 
-<<<<<<< HEAD
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(5000);
-
-//        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-//
-//
-//        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-//        if (mLastLocation != null) {
-//            lat = String.valueOf(mLastLocation.getLatitude());
-//            lon = String.valueOf(mLastLocation.getLongitude());
- //       }
     }
 
     @Override
@@ -164,9 +151,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onDestroy();
         mGoogleApiClient.disconnect();
     }
-=======
 
-    // @Override
+
+    @Override
     public void onConnected (Bundle connectionHint){
     //    super.
         try {
@@ -174,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         } catch(SecurityException e) {
             e.printStackTrace();
         }
->>>>>>> ericaschulz-master
     }
 
     @Override
@@ -218,21 +204,23 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Places.GEO_DATA_API)
                 .addApi(Places.PLACE_DETECTION_API)
+                .addApi(LocationServices.API)
                 .addOnConnectionFailedListener(this)
                 .build();
     }
 
 
-    private class DataAsync extends AsyncTask<Void, Void, Void> {
-        int metro_id = 0;
 
+    private class DataAsync extends AsyncTask<Void, Void, Void> {
+       int metro_id =0;
+        String name,date,venue,time,artist,venue_lat,venue_lng,city;
 
         @Override
         protected Void doInBackground(Void... params) {
 
             JSONObject jsonObject = JsonParser.getMetroID(place);
-            if (jsonObject != null) {
-                if (jsonObject.length() > 0) {
+            if(jsonObject!=null){
+                if(jsonObject.length()>0){
                     try {
                         JSONArray jsonArray = jsonObject.getJSONObject("resultsPage").getJSONObject("results").getJSONArray("location");
                         metro_id = jsonArray.getJSONObject(0).getJSONObject("metroArea").getInt("id");
@@ -245,50 +233,32 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
 
             JSONObject concert_jsonObject = JsonParser.getConcertsFromApi(metro_id);
-            if (concert_jsonObject != null) {
-                if (concert_jsonObject.length() > 0) {
-                    try {
+            if(concert_jsonObject!=null){
+                if(concert_jsonObject.length()>0){
+                    try{
                         JSONArray jsonArray = concert_jsonObject.getJSONObject("resultsPage").getJSONObject("results").getJSONArray("event");
                         int length = jsonArray.length();
-                        if (length > 0) {
-                            for (int i = 0; i < length; i++) {
+                        if(length>0){
+                            for(int i=0;i<length;i++){
                                 JSONObject innerObject = jsonArray.getJSONObject(i);
                                 name = innerObject.getString("displayName");
-                                date = innerObject.getJSONObject("start").getString("date");
+                                date= innerObject.getJSONObject("start").getString("date");
                                 time = innerObject.getJSONObject("start").getString("time");
-                                //artist=innerObject.getJSONObject("performance").getString("")
+                               // artist=innerObject.getJSONObject("performance").getString("")
                                 venue = innerObject.getJSONObject("venue").getString("displayName");
-                                venue_lat = innerObject.getJSONObject("venue").getString("lat");
-                                venue_lng = innerObject.getJSONObject("venue").getString("lng");
+                                venue_lat=innerObject.getJSONObject("venue").getString("lat");
+                                venue_lng=innerObject.getJSONObject("venue").getString("lng");
                                 city = innerObject.getJSONObject("location").getString("city");
 
-                                JSONArray jsonArray_forArtist = innerObject.getJSONArray("performance");
-                                JSONObject innerObject_artist = jsonArray_forArtist.getJSONObject(0);
-                                artist = innerObject_artist.getJSONObject("artist").getString("displayName");
-                                JSONObject images_JsonObject = JsonParser.getImage(artist);
-                                JSONArray images_JsonArray = images_JsonObject.getJSONObject("artist").getJSONArray("image");
-                                JSONObject image_medium_object = images_JsonArray.getJSONObject(1);
-                                image_url = image_medium_object.getString("#text");
-                                Bitmap bitmap = null;
-                                OkHttpClient client = new OkHttpClient();
-                                Request request = new Request.Builder().url(image_url).build();
-                                Response response = client.newCall(request).execute();
-                                byte[] image = new byte[0];
-                                image = response.body().bytes();
-
-
-                                if (image != null && image.length > 0) {
-                                    bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-                                }
-                                Concert concert = new Concert(name, venue, city, time, bitmap);
+                                Concert concert = new Concert(name,venue,city,time,null);
                                 list_concerts.add(concert);
-
 
                             }
                         }
 
 
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e){
                         e.printStackTrace();
                     }
                 }
@@ -299,16 +269,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         @Override
         protected void onPostExecute(Void v) {
             super.onPostExecute(v);
-            //  Log.e("Hey",name);
+          //  Log.e("Hey",name);
             recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
             recyclerView.setHasFixedSize(true);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
             recyclerView.setLayoutManager(layoutManager);
             concertAdapter = new ConcertAdapter(list_concerts);
             recyclerView.setAdapter(concertAdapter);
-
         }
-
     }
-
 }

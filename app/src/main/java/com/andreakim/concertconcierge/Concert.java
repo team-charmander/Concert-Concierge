@@ -10,6 +10,7 @@ public class Concert {
     String venue;
     String date;
 
+
     public Bitmap getImage() {
         return image;
     }
@@ -17,6 +18,7 @@ public class Concert {
     public void setImage(Bitmap image) {
         this.image = image;
     }
+
 
     String time;
     Bitmap image;
@@ -31,7 +33,11 @@ public class Concert {
 
     String city;
 
+
     public Concert(String name, String venue, String city, String time,Bitmap image) {
+
+
+
         this.name = name;
         this.venue = venue;
         this.city = city;
