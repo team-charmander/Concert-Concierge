@@ -21,60 +21,25 @@
         android:textSize="24sp"
         android:textStyle="bold"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv">
-
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cv">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:id="@+id/editTxt_search"/>
 
-    <ImageView
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="6dp"
-        android:id="@+id/concert_image"
-        android:src="@drawable/concertt"/>
+        android:text="Search"
+        android:id="@+id/btn_search"
+        android:layout_gravity="right" />
 
-    <LinearLayout
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:orientation="vertical">
-
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/concert_txtview_name"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:text="@string/concert_name"/>
+        android:id="@+id/card_recycler_view"
+        android:scrollbars="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/concert_txtview_date"
-        android:text="@string/concert_date"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/concert_txtview_venue"
-        android:text="@string/concert_venue"/>
-
-    </LinearLayout>
-        </LinearLayout>
-        </RelativeLayout>
-        </android.support.v7.widget.CardView>
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
