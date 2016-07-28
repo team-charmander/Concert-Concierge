@@ -36,11 +36,14 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceLikelihood;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
@@ -70,39 +73,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txt_search = (TextView) findViewById(R.id.editTxt_search);
-        btn_search = (Button) findViewById(R.id.btn_search);
+
 
         buildGoogleApiClient();
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-        try {
-
-            PlacePicker.IntentBuilder picker_builder = new PlacePicker.IntentBuilder();
-            startActivityForResult(picker_builder.build(this), place_picker_request);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        btn_search.setOnClickListener(new View.OnClickListener() {
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onClick(View view) {
-                list_concerts = new ArrayList<Concert>();
-                place = txt_search.getText().toString();
-                new DataAsync().execute();
-            }
-        });
+            public void onPlaceSelected(Place place_searched) {
+                // TODO: Get info about the selected place.
+                Log.i("Hey", "Place: " + place_searched.getName());
 
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == place_picker_request) {
-            if (resultCode == RESULT_OK) {
-                Place place_picker = PlacePicker.getPlace(this, data);
-
-                LatLng latLng = PlacePicker.getPlace(this, data).getLatLng();
+                LatLng latLng = place_searched.getLatLng();
                 Double lat = latLng.latitude;
                 Double lng = latLng.longitude;
 
@@ -112,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     if (addresses.size() > 0)
                         place = addresses.get(0).getLocality();
                     String toastMsg = String.format("Place: %s", addresses.get(0).getLocality());
-                    Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
                     list_concerts = new ArrayList<Concert>();
                     // place = txt_search.getText().toString();
                     new DataAsync().execute();
@@ -120,7 +103,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     e.printStackTrace();
                 }
             }
-        }
+
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i("Hey", "An error occurred: " + status);
+            }
+        });
+
 
     }
 
@@ -183,7 +174,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                 name = innerObject.getString("displayName");
                                 date = innerObject.getJSONObject("start").getString("date");
                                 time = innerObject.getJSONObject("start").getString("time");
-                                //artist=innerObject.getJSONObject("performance").getString("")
                                 venue = innerObject.getJSONObject("venue").getString("displayName");
                                 venue_lat = innerObject.getJSONObject("venue").getString("lat");
                                 venue_lng = innerObject.getJSONObject("venue").getString("lng");
@@ -193,23 +183,38 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                 JSONArray jsonArray_forArtist = innerObject.getJSONArray("performance");
                                 JSONObject innerObject_artist = jsonArray_forArtist.getJSONObject(0);
                                 artist = innerObject_artist.getJSONObject("artist").getString("displayName");
-                                JSONObject images_JsonObject = JsonParser.getImage(artist);
-                                JSONArray images_JsonArray = images_JsonObject.getJSONObject("artist").getJSONArray("image");
-                                JSONObject image_medium_object = images_JsonArray.getJSONObject(1);
-                                image_url = image_medium_object.getString("#text");
                                 Bitmap bitmap = null;
-                                OkHttpClient client = new OkHttpClient();
-                                Request request = new Request.Builder().url(image_url).build();
-                                Response response = client.newCall(request).execute();
+//                                JSONObject images_JsonObject = JsonParser.getImage(artist);
+//                                if(images_JsonObject!=null) {
+//                                    JSONArray images_JsonArray = images_JsonObject.getJSONObject("artist").getJSONArray("image");
+//                                    if (images_JsonArray != null) {
+//                                        JSONObject image_medium_object = images_JsonArray.getJSONObject(0);
+//                                        if(image_medium_object!=null){
+//                                        image_url = image_medium_object.getString("#text");
+//                                        if(image_url!=null) {
+//
+//                                            OkHttpClient client = new OkHttpClient();
+//                                            Request request = new Request.Builder().url(image_url).build();
+//                                            if (request != null) {
+//                                                Response response = client.newCall(request).execute();
+//
+//                                                byte[] image = response.body().bytes();
+//
+//
+//                                                if (image != null && image.length > 0) {
+//                                                    bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+//                                                }
+//                                                else bitmap = null;
+//                                            } else bitmap = null;
+//
+//                                        } else bitmap = null;
+//                                        } else bitmap = null;
+//                                    } else bitmap = null;
+//                                } else bitmap = null;
+                                        Concert concert = new Concert(name, venue, city, time, bitmap, event_id);
+                                        list_concerts.add(concert);
 
-                                byte[] image = response.body().bytes();
 
-
-                                if (image != null && image.length > 0) {
-                                    bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-                                }
-                                Concert concert = new Concert(name, venue, city, time, bitmap,event_id);
-                                list_concerts.add(concert);
 
 
                             }
