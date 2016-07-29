@@ -12,6 +12,10 @@ public class Concert {
     String time;
     Bitmap image;
 
+
+    int id;
+
+
     public Bitmap getImage() {
         return image;
     }
@@ -19,6 +23,18 @@ public class Concert {
     public void setImage(Bitmap image) {
         this.image = image;
     }
+
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public String getCity() {
         return city;
@@ -39,10 +55,7 @@ public class Concert {
 
     String city;
 
-
-    public Concert(String name, String venue, String city, String time,Bitmap image) {
-
-
+    public Concert(String name, String venue, String city, String time,Bitmap image,int id) {
 
 
         this.name = name;
@@ -50,7 +63,10 @@ public class Concert {
         this.city = city;
         this.time = time;
         this.image = image;
+
+        this.id = id;
     }
+
 
 
     public String getName() {
