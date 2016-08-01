@@ -21,7 +21,7 @@ public abstract class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_concert_detail,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.weather_card_layout,parent,false);
         return new ViewHolder(view);
     }
     @Override
@@ -29,19 +29,18 @@ public abstract class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter
 
         holder.weatherCity.setText(weathers.get(position).getCityName());
         holder.weatherTemp.setText(weathers.get(position).getCurrentTemp());
-//        holder.weatherLat.setText(weathers.get(position).getMlat());
-//        holder.weatherLon.setText(weathers.get(position).getmLon());
+
 
 
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView weatherTemp, weatherCity, weatherLat, weatherLon;
+        private TextView weatherTemp, weatherCity;
 
         public ViewHolder(View view) {
             super(view);
 
             weatherTemp = (TextView)view.findViewById(R.id.weather_temp);
-            weatherCity = (TextView)view.findViewById(R.id.weather_city);
+//            weatherCity = (TextView)view.findViewById(R.id.weather_city);
 
         }
     }

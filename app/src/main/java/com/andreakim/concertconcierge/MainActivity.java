@@ -40,6 +40,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -50,18 +51,16 @@ import java.util.Locale;
 
 
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, RecyclerViewClickListener, GoogleApiClient.ConnectionCallbacks {
-
-
     private LocationRequest mLocationRequest;
-
     private RecyclerView recyclerView;
-
-
     private ConcertAdapter concertAdapter;
     static private ArrayList<Concert> list_concerts;
-
-
     String place;
     String name, date, venue, time, artist, venue_lat, venue_lng, city,image_url;
     int event_id = 0;
@@ -135,11 +134,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             locationManager.requestLocationUpdates(provider,interval,ms,locationListener );
 
             Location location = locationManager.getLastKnownLocation(provider);
+
             lat = location.getLatitude();
             lng=location.getLongitude();
             progressBar = (ProgressBar)findViewById(R.id.progressBar);
             updateProgressBar();
             launchDataAsyc(lat,lng);
+
+            if(location!=null) {
+                lat = location.getLatitude();
+                lng = location.getLongitude();
+                progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                updateProgressBar();
+                launchDataAsyc(lat, lng);
+            }
+
 
 
 
@@ -147,8 +156,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         catch (SecurityException e){
             e.printStackTrace();
         }
-
-
 
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
@@ -165,11 +172,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Double lng = latLng.longitude;
                 launchDataAsyc(lat, lng);
                 updateProgressBar();
-
-
-
             }
-
 
             @Override
             public void onError(Status status) {
@@ -177,10 +180,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.i("Hey", "An error occurred: " + status);
             }
         });
-
-
     }
-
 
     public void updateProgressBar(){
         progressBar.setVisibility(View.VISIBLE);
@@ -212,7 +212,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         }).start();
     }
-
 
     public void launchDataAsyc(Double lat, Double lng) {
         Geocoder gcd = new Geocoder(getApplicationContext(), Locale.getDefault());
@@ -248,7 +247,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
-
     }
 
     @Override
@@ -257,13 +255,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onStop();
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mGoogleApiClient.disconnect();
     }
-
 
     @Override
     public void onConnected (Bundle connectionHint){
@@ -276,8 +272,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
 
-
-
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Places.GEO_DATA_API)
@@ -287,15 +281,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .build();
     }
 
-
-
     @Override
     public void recyclerViewListClicked(View v, int position) {
         list_concerts.get(position);
         Intent intent = new Intent(MainActivity.this,ConcertDetailActivity.class);
         intent.putExtra("event_id",event_id);
         startActivity(intent);
-
     }
 
 
@@ -311,8 +302,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         @Override
         protected Void doInBackground(Void... params) {
+            String key = getResources().getString(R.string.songkick_api);
 
-            JSONObject jsonObject = JsonParser.getMetroID(place);
+            JSONObject jsonObject = JsonParser.getMetroID(place,key);
             if (jsonObject != null) {
                 if (jsonObject.length() > 0) {
                     try {
@@ -326,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             }
 
-            JSONObject concert_jsonObject = JsonParser.getConcertsFromApi(metro_id);
+            JSONObject concert_jsonObject = JsonParser.getConcertsFromApi(metro_id,key);
             if (concert_jsonObject != null) {
                 if (concert_jsonObject.length() > 0) {
                     try {
@@ -347,6 +339,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                 JSONArray jsonArray_forArtist = innerObject.getJSONArray("performance");
                                 JSONObject innerObject_artist = jsonArray_forArtist.getJSONObject(0);
                                 artist = innerObject_artist.getJSONObject("artist").getString("displayName");
+
                                 Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.concerttwo);
 //                                JSONObject images_JsonObject = JsonParser.getImage(artist);
 //                                if(images_JsonObject!=null) {
@@ -375,10 +368,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 //                                        } else bitmap = null;
 //                                    } else bitmap = null;
 //                                } else bitmap = null;
+
                                 Concert concert = new Concert(name, venue, city, time, bitmap, event_id);
                                 list_concerts.add(concert);
-
-
                             }
                         }
 
@@ -407,7 +399,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     int eventid = list_concerts.get(position).getId();
                     intent.putExtra("event_id",eventid);
                     startActivity(intent);
-
                 }
             });
             recyclerView.setAdapter(concertAdapter);
