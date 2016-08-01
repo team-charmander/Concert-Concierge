@@ -48,8 +48,9 @@ public class ConcertDetailActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... voids) {
+                String key = getResources().getString(R.string.songkick_api);
 
-                JSONObject event_responseObject = JsonParser.getEventDetails(event_id);
+                JSONObject event_responseObject = JsonParser.getEventDetails(event_id,key);
 
                 if (event_responseObject != null && event_responseObject.length() > 0) {
 

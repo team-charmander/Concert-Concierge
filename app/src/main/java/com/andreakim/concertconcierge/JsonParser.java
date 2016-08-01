@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.Key;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,11 +18,12 @@ public class JsonParser {
 
     private static Response response;
 
-    public static JSONObject getMetroID(String place) {
+    public static JSONObject getMetroID(String place,String key) {
         try {
             OkHttpClient client = new OkHttpClient();
 
-            String metro_id_url = "http://api.songkick.com/api/3.0/search/locations.json?query=" + place + "&apikey="+R.string.songkick_api;
+
+            String metro_id_url = "http://api.songkick.com/api/3.0/search/locations.json?query=" + place + "&apikey="+key;
             Request request = new Request.Builder()
                     .url(metro_id_url).build();
 
@@ -35,10 +37,10 @@ public class JsonParser {
         return null;
     }
 
-    public static JSONObject getConcertsFromApi(int metro_id){
+    public static JSONObject getConcertsFromApi(int metro_id,String key){
         try {
             OkHttpClient client = new OkHttpClient();
-            String Main_Url = "http://api.songkick.com/api/3.0/metro_areas/"+metro_id+"/calendar.json?apikey="+R.string.songkick_api;
+            String Main_Url = "http://api.songkick.com/api/3.0/metro_areas/"+metro_id+"/calendar.json?apikey="+key;
             Request request = new Request.Builder()
                     .url(Main_Url).build();
             response = client.newCall(request).execute();
@@ -55,6 +57,7 @@ public class JsonParser {
     public static JSONObject getImage(String artist){
         try{
             OkHttpClient client = new OkHttpClient();
+
             String url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+artist+"&api_key="+R.string.lastfm_api+"&format=json";
 
             Request request = new Request.Builder()
@@ -69,10 +72,10 @@ public class JsonParser {
         return null;
     }
 
-    public static JSONObject getEventDetails(int event_id){
+    public static JSONObject getEventDetails(int event_id,String key){
         try{
             OkHttpClient client = new OkHttpClient();
-            String url = "http://api.songkick.com/api/3.0/events/"+event_id+".json?apikey="+R.string.songkick_api;
+            String url = "http://api.songkick.com/api/3.0/events/"+event_id+".json?apikey="+key;
 
             Request request = new Request.Builder()
                     .url(url).build();

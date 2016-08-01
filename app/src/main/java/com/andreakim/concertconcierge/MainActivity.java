@@ -70,6 +70,10 @@ import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, RecyclerViewClickListener, GoogleApiClient.ConnectionCallbacks {
     private LocationRequest mLocationRequest;
     private RecyclerView recyclerView;
@@ -148,11 +152,24 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             locationManager.requestLocationUpdates(provider,interval,ms,locationListener );
 
             Location location = locationManager.getLastKnownLocation(provider);
+
             lat = location.getLatitude();
             lng=location.getLongitude();
             progressBar = (ProgressBar)findViewById(R.id.progressBar);
             updateProgressBar();
             launchDataAsyc(lat,lng);
+
+            if(location!=null) {
+                lat = location.getLatitude();
+                lng = location.getLongitude();
+                progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                updateProgressBar();
+                launchDataAsyc(lat, lng);
+            }
+
+
+
+
         }
         catch (SecurityException e){
             e.printStackTrace();
@@ -303,8 +320,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         @Override
         protected Void doInBackground(Void... params) {
+            String key = getResources().getString(R.string.songkick_api);
 
-            JSONObject jsonObject = JsonParser.getMetroID(place);
+            JSONObject jsonObject = JsonParser.getMetroID(place,key);
             if (jsonObject != null) {
                 if (jsonObject.length() > 0) {
                     try {
@@ -318,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             }
 
-            JSONObject concert_jsonObject = JsonParser.getConcertsFromApi(metro_id);
+            JSONObject concert_jsonObject = JsonParser.getConcertsFromApi(metro_id,key);
             if (concert_jsonObject != null) {
                 if (concert_jsonObject.length() > 0) {
                     try {
@@ -339,6 +357,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                 JSONArray jsonArray_forArtist = innerObject.getJSONArray("performance");
                                 JSONObject innerObject_artist = jsonArray_forArtist.getJSONObject(0);
                                 artist = innerObject_artist.getJSONObject("artist").getString("displayName");
+
                                 Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.concerttwo);
 //                                JSONObject images_JsonObject = JsonParser.getImage(artist);
 //                                if(images_JsonObject!=null) {
@@ -367,6 +386,35 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 //                                        } else bitmap = null;
 //                                    } else bitmap = null;
 //                                } else bitmap = null;
+
+//                                JSONObject images_JsonObject = JsonParser.getImage(artist);
+//                                if(images_JsonObject!=null) {
+//                                    JSONArray images_JsonArray = images_JsonObject.getJSONArray("images");
+//                                    if (images_JsonArray != null) {
+//                                        JSONObject image_medium_object = images_JsonArray.getJSONObject(2);
+//                                        if(image_medium_object!=null){
+//                                        image_url = image_medium_object.getString("url");
+//                                        if(image_url!=null) {
+//
+//                                            OkHttpClient client = new OkHttpClient();
+//                                            Request request = new Request.Builder().url(image_url).build();
+//                                            if (request != null) {
+//                                                Response response = client.newCall(request).execute();
+//
+//                                                byte[] image = response.body().bytes();
+//
+//
+//                                                if (image != null && image.length > 0) {
+//                                                    bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+//                                                }
+//                                                else bitmap = null;
+//                                            } else bitmap = null;
+//
+//                                        } else bitmap = null;
+//                                        } else bitmap = null;
+//                                    } else bitmap = null;
+//                                } else bitmap = null;
+
                                         Concert concert = new Concert(name, venue, city, time, bitmap, event_id);
                                         list_concerts.add(concert);
 
