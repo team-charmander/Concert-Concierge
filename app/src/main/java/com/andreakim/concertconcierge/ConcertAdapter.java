@@ -19,10 +19,8 @@ import java.util.ArrayList;
  */
 public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ViewHolder> {
 
-
     private ArrayList<Concert> concerts;
     private static RecyclerViewClickListener mListener;
-
     public ConcertAdapter(ArrayList<Concert> concerts, RecyclerViewClickListener itemClickListener){
         this.concerts=concerts;
         this.mListener=itemClickListener;
@@ -44,16 +42,12 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ViewHold
         holder.tv_image.setImageBitmap(concerts.get(position).getImage());
 
         holder.tv_image.setImageBitmap(concerts.get(position).getImage());
-
-
     }
 
     @Override
     public int getItemCount() {
         return concerts.size();
     }
-
-
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView tv_name_artist, tv_time, tv_venue,tv_city;
@@ -64,7 +58,6 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ViewHold
         public void onClick(View view) {
             mListener.recyclerViewListClicked(view,getLayoutPosition());
         }
-
 
         public ViewHolder(View view) {
             super(view);

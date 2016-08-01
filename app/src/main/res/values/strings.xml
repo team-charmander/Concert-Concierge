@@ -14,7 +14,9 @@
     <string name="songkick_api">KTHRla0QWSbiVtF0</string>
     <string name="lastfm_api">01c216d809a51da0b30105d35eb76ac8</string>
     <string name="googleclient_key">AIzaSyBh3f8fFDknTRLf4S9Jtu-sENRk4xq9MjQ</string>
-
+    <string name="phone">Phone, if any</string>
+    <string name="age">Age Restrictions, if any</string>
+    <string name="uri">Link</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

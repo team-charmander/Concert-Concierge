@@ -70,25 +70,11 @@ import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
-
-
-
-
-
-
-
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, RecyclerViewClickListener, GoogleApiClient.ConnectionCallbacks {
-
-
     private LocationRequest mLocationRequest;
-
     private RecyclerView recyclerView;
-
-
     private ConcertAdapter concertAdapter;
     static private ArrayList<Concert> list_concerts;
-
-
     String place;
     String name, date, venue, time, artist, venue_lat, venue_lng, city,image_url;
     int event_id = 0;
@@ -167,15 +153,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             progressBar = (ProgressBar)findViewById(R.id.progressBar);
             updateProgressBar();
             launchDataAsyc(lat,lng);
-
-
-
         }
         catch (SecurityException e){
             e.printStackTrace();
         }
-
-
 
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
@@ -192,11 +173,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Double lng = latLng.longitude;
                 launchDataAsyc(lat, lng);
                 updateProgressBar();
-
-
-
             }
-
 
             @Override
             public void onError(Status status) {
@@ -204,10 +181,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.i("Hey", "An error occurred: " + status);
             }
         });
-
-
     }
-
 
     public void updateProgressBar(){
         progressBar.setVisibility(View.VISIBLE);
@@ -239,7 +213,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         }).start();
     }
-
 
     public void launchDataAsyc(Double lat, Double lng) {
         Geocoder gcd = new Geocoder(getApplicationContext(), Locale.getDefault());
@@ -275,7 +248,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
-
     }
 
     @Override
@@ -284,13 +256,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onStop();
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mGoogleApiClient.disconnect();
     }
-
 
     @Override
     public void onConnected (Bundle connectionHint){
@@ -303,8 +273,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
 
-
-
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Places.GEO_DATA_API)
@@ -314,15 +282,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .build();
     }
 
-
-
     @Override
     public void recyclerViewListClicked(View v, int position) {
         list_concerts.get(position);
         Intent intent = new Intent(MainActivity.this,ConcertDetailActivity.class);
         intent.putExtra("event_id",event_id);
         startActivity(intent);
-
     }
 
 
@@ -434,7 +399,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     int eventid = list_concerts.get(position).getId();
                     intent.putExtra("event_id",eventid);
                     startActivity(intent);
-
                 }
             });
             recyclerView.setAdapter(concertAdapter);
