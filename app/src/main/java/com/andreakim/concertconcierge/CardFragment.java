@@ -12,12 +12,7 @@ import android.widget.TextView;
 public class CardFragment extends android.support.v4.app.Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-
-
         View cardFragment = inflater.inflate(R.layout.fragment_layout,container,false);
-
-
-
         return cardFragment;
     }
 

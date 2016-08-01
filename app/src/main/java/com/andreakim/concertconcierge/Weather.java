@@ -10,10 +10,6 @@ public class Weather {
     public long mLat;
     public long mLon;
 
-
-
-
-
     @Override
     public String toString() {
         return "Weather{" +
@@ -23,7 +19,6 @@ public class Weather {
                 ", mLon=" + mLon +
                 '}';
     }
-
 
     public String getCityName() {
         return cityName;

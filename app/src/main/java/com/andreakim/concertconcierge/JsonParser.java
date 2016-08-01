@@ -19,8 +19,6 @@ public class JsonParser {
 
     public static JSONObject getMetroID(String place) {
         try {
-
-
             OkHttpClient client = new OkHttpClient();
 
             String metro_id_url = "http://api.songkick.com/api/3.0/search/locations.json?query=" + place + "&apikey="+R.string.songkick_api;
@@ -37,18 +35,12 @@ public class JsonParser {
         return null;
     }
 
-
-
     public static JSONObject getConcertsFromApi(int metro_id){
         try {
             OkHttpClient client = new OkHttpClient();
-
-
             String Main_Url = "http://api.songkick.com/api/3.0/metro_areas/"+metro_id+"/calendar.json?apikey="+R.string.songkick_api;
-
             Request request = new Request.Builder()
                     .url(Main_Url).build();
-
             response = client.newCall(request).execute();
             return new JSONObject(response.body().string());
         } catch (IOException e) {
@@ -92,8 +84,5 @@ public class JsonParser {
             e.printStackTrace();
         }
         return null;
-
     }
-
-
 }

@@ -25,12 +25,10 @@ public class ConcertDetailActivity extends AppCompatActivity {
         String city, lat, lng, popularity, uri, event_name, id, time, date, ageRestriction, zip, venue_name, street, phone, venue_description;
         private TextView txt_name, txt_city, txt_popularity, txt_uri, txt_time, txt_date, txt_ageRestriction, txt_venue, txt_phone;
 
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_concert_detail);
-
 
             event_id = getIntent().getIntExtra("event_id", 0);
             txt_name = (TextView) findViewById(R.id.concert_txtview_name);
