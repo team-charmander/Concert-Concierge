@@ -55,8 +55,8 @@ public class JsonParser {
     public static JSONObject getImage(String artist){
         try{
             OkHttpClient client = new OkHttpClient();
-            String url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+artist+"&api_key=01c216d809a51da0b30105d35eb76ac8&format=json";
-
+          //  String url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+artist+"&api_key=01c216d809a51da0b30105d35eb76ac8&format=json";
+            String url = "https://www.google.com/search?q=google+images+"+artist+"&espv=2&biw=1218&bih=583&tbm=isch&tbo=u&source=univ&sa=X&ved=0ahUKEwichtTRo5nOAhUM0YMKHVi_ACUQsAQIHg";
             Request request = new Request.Builder()
                     .url(url).build();
 
