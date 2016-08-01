@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.andreakim.concertconcierge.ConcertDetailActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.andreakim.concertconcierge.ConcertDetailActivity"
+
     android:layout_height="wrap_content"
     android:id="@+id/card_item"
     android:layout_marginTop="5dp"
@@ -32,6 +35,7 @@
             android:id="@+id/concert_image"
             android:layout_centerHorizontal="true"
             android:src="@drawable/concerttwo" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,26 +125,21 @@
             android:layout_alignParentStart="true" />
 
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/weather_temp"
-        android:layout_alignBottom="@+id/concert_txtview_venue"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/concert_txtview_venue" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/weather_city"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/weather_temp" />
-
-
-
-
-
     </RelativeLayout>
-</android.support.v7.widget.CardView>
+
+
+
+
+     </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/weather_temp"
+        android:layout_below="@+id/card_item"
+        android:layout_alignStart="@+id/card_item" />
+</RelativeLayout>
+
+
 

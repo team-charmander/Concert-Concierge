@@ -9,15 +9,6 @@ import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 import org.json.JSONObject;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.widget.TextView;
-
-import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 
 public class ConcertDetailActivity extends AppCompatActivity {
@@ -42,6 +33,7 @@ public class ConcertDetailActivity extends AppCompatActivity {
         txt_ageRestriction = (TextView) findViewById(R.id.concert_txtAge);
         txt_venue = (TextView) findViewById(R.id.concert_txtview_venue);
         txt_phone = (TextView) findViewById(R.id.concert_txtPhone);
+
         new EventAsync().execute();
     }
 
