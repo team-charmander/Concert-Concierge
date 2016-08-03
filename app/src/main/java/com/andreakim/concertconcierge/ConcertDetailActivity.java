@@ -12,6 +12,8 @@ import org.json.JSONObject;
 
 
 public class ConcertDetailActivity extends AppCompatActivity {
+
+    private Weather mWeatherModel;
     int event_id;
 
     String city, lat, lng, popularity, uri, event_name, id, time, date, ageRestriction, zip, venue_name, street, phone, venue_description;
@@ -34,6 +36,32 @@ public class ConcertDetailActivity extends AppCompatActivity {
             txt_venue = (TextView) findViewById(R.id.concert_txtview_venue);
             txt_phone = (TextView) findViewById(R.id.concert_txtPhone);
             new EventAsync().execute();
+        }
+
+
+        private class WeatherTask extends  AsyncTask<Void, Void, Void> {
+
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                JSONObject weatherJson = JsonParser.getWeather(zip);
+                // fetch weather
+                // get json
+                // put in mWeatherModel
+                //mWeatherModel.mDescription = ...
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void empty) {
+                // 1. create the fragment & place it somewhere
+                // 2. grab values from model
+                // 3. create bundle w/values from model
+                // 4. setArguments(bundle) to fragment
+                // 5. inflate the fragment
+
+
+            }
         }
 
         private class EventAsync extends AsyncTask<Void, Void, Void> {
@@ -93,6 +121,9 @@ public class ConcertDetailActivity extends AppCompatActivity {
                     txt_phone.setText(phone);
                     String venue = venue_name + "\n" + street + "\n" + zip;
                     txt_venue.setText(venue);
+
+                    // when done, new async task for weather
+                    new WeatherTask().execute();
                 }
 
 

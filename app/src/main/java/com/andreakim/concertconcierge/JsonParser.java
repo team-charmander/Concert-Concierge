@@ -87,13 +87,13 @@ public class JsonParser {
         }
         return null;
     }
-    public static JSONObject getWeather(int currentTemp, String mDescription) {
+    public static JSONObject getWeather(String zip) {
 
 
         try{
 
             OkHttpClient client = new OkHttpClient();
-            String url = "http://api.openweathermap.org/data/2.5/weather?zip=60601" + "us&APPID=" + "1908e7a47dd061ed22e0faacfd678ba8";
+            String url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + ",us&APPID=" + "1908e7a47dd061ed22e0faacfd678ba8";
             Request request = new Request.Builder()
                     .url(url).build();
 

@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public abstract class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
 
+
+
     private ArrayList<Weather> weathers;
 
     public WeatherAdapter(ArrayList<Weather> weathers){
@@ -30,9 +32,8 @@ public abstract class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter
         holder.weatherDescription.setText(weathers.get(position).getmDescription());
         holder.weatherTemp.setText(weathers.get(position).getCurrentTemp());
 
-
-
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView weatherTemp, weatherDescription;
 
