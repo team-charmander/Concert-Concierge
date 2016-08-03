@@ -27,20 +27,20 @@ public abstract class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.weatherCity.setText(weathers.get(position).getCityName());
+        holder.weatherDescription.setText(weathers.get(position).getmDescription());
         holder.weatherTemp.setText(weathers.get(position).getCurrentTemp());
 
 
 
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView weatherTemp, weatherCity;
+        private TextView weatherTemp, weatherDescription;
 
         public ViewHolder(View view) {
             super(view);
 
             weatherTemp = (TextView)view.findViewById(R.id.weather_temp);
-//            weatherCity = (TextView)view.findViewById(R.id.weather_city);
+            weatherDescription = (TextView)view.findViewById(R.id.weather_desc);
 
         }
     }

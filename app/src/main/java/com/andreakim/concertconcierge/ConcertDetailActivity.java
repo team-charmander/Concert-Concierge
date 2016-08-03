@@ -95,6 +95,7 @@ public class ConcertDetailActivity extends AppCompatActivity {
                     txt_venue.setText(venue);
                 }
 
+
             }
 
         }

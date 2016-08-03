@@ -40,20 +40,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-
-
-
-
-
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, RecyclerViewClickListener, GoogleApiClient.ConnectionCallbacks {
@@ -98,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
 /**
  * Created by spoorthi on 7/25/16.
  */
@@ -86,4 +87,25 @@ public class JsonParser {
         }
         return null;
     }
+    public static JSONObject getWeather(int currentTemp, String mDescription) {
+
+
+        try{
+
+            OkHttpClient client = new OkHttpClient();
+            String url = "http://api.openweathermap.org/data/2.5/weather?zip=60601" + "us&APPID=" + "1908e7a47dd061ed22e0faacfd678ba8";
+            Request request = new Request.Builder()
+                    .url(url).build();
+
+            response = client.newCall(request).execute();
+            return new JSONObject(response.body().string());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+
 }
