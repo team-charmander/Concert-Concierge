@@ -9,7 +9,8 @@ public class Concert {
     String name;
     String venue;
     String date;
-
+    String time;
+    Bitmap image;
 
 
     int id;
@@ -23,7 +24,8 @@ public class Concert {
         this.image = image;
     }
 
-    String time;
+
+
 
     public int getId() {
         return id;
@@ -33,11 +35,19 @@ public class Concert {
         this.id = id;
     }
 
-    Bitmap image;
 
     public String getCity() {
         return city;
     }
+
+
+
+
+
+
+
+
+
 
     public void setCity(String city) {
         this.city = city;
@@ -46,6 +56,7 @@ public class Concert {
     String city;
 
     public Concert(String name, String venue, String city, String time,Bitmap image,int id) {
+
 
         this.name = name;
         this.venue = venue;

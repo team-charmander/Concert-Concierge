@@ -4,12 +4,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.URL;
-import java.security.Key;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
 
 /**
  * Created by spoorthi on 7/25/16.
@@ -21,8 +20,6 @@ public class JsonParser {
     public static JSONObject getMetroID(String place,String key) {
         try {
             OkHttpClient client = new OkHttpClient();
-
-
             String metro_id_url = "http://api.songkick.com/api/3.0/search/locations.json?query=" + place + "&apikey="+key;
             Request request = new Request.Builder()
                     .url(metro_id_url).build();
@@ -88,4 +85,25 @@ public class JsonParser {
         }
         return null;
     }
+    public static JSONObject getWeather(String zip) {
+
+
+        try{
+
+            OkHttpClient client = new OkHttpClient();
+            String url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + ",us&units=imperial&APPID=" + "1908e7a47dd061ed22e0faacfd678ba8";
+            Request request = new Request.Builder()
+                    .url(url).build();
+
+            response = client.newCall(request).execute();
+            return new JSONObject(response.body().string());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+
 }

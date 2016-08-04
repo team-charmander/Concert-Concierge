@@ -5,28 +5,18 @@ package com.andreakim.concertconcierge;
  */
 public class Weather {
 
-    public String cityName;
+
     public int currentTemp;
-    public long mLat;
-    public long mLon;
+    public String mDescription;
 
-    @Override
-    public String toString() {
-        return "Weather{" +
-                "cityName='" + cityName + '\'' +
-                ", currentTemp=" + currentTemp +
-                ", mLat=" + mLat +
-                ", mLon=" + mLon +
-                '}';
+
+
+    public Weather(String cityName, int currentTemp, long mLat, long mLon) {
+
+        this.currentTemp = currentTemp;
+        this.mDescription = mDescription;
     }
 
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
 
     public int getCurrentTemp() {
         return currentTemp;
@@ -36,19 +26,14 @@ public class Weather {
         this.currentTemp = currentTemp;
     }
 
-    public long getMlat() {
-        return mLat;
+    public Weather() {
     }
 
-    public void setMlat(long mlat) {
-        this.mLat = mlat;
+    public String getmDescription() {
+        return mDescription;
     }
 
-    public long getmLon() {
-        return mLon;
-    }
-
-    public void setmLon(long mLon) {
-        this.mLon = mLon;
+    public void setmDescription(String mDescription) {
+        this.mDescription = mDescription;
     }
 }

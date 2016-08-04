@@ -1,78 +1,54 @@
 package com.andreakim.concertconcierge;
 
-
-
-import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.annotation.*;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import android.*;
-
-
 import android.content.Context;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Address;
-
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-
-
-
-
-import android.location.Criteria;
-
 import android.support.v4.app.ActivityCompat;
-
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
-
-
-import java.util.ArrayList;
-
-import java.util.List;
-import java.util.Locale;
-
 import android.util.Log;
 import android.view.View;
-
+import android.widget.ProgressBar;
 import android.widget.Toast;
-
-
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
-
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.widget.ProgressBar;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, RecyclerViewClickListener, GoogleApiClient.ConnectionCallbacks {
     private LocationRequest mLocationRequest;
@@ -116,11 +92,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         buildGoogleApiClient();
-         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         Criteria crta = new Criteria();
         crta.setAccuracy(Criteria.ACCURACY_FINE);
@@ -128,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         crta.setBearingRequired(true);
         crta.setCostAllowed(true);
         crta.setPowerRequirement(Criteria.POWER_LOW);
-       String provider = LocationManager.GPS_PROVIDER;
+        String provider = LocationManager.GPS_PROVIDER;
         try {
             long interval = 100;
             float ms = 1;
@@ -271,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     public void onConnected (Bundle connectionHint){
-    //    super.
+        //    super.
         try {
             Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         } catch(SecurityException e) {
@@ -377,38 +354,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 //                                    } else bitmap = null;
 //                                } else bitmap = null;
 
-//                                JSONObject images_JsonObject = JsonParser.getImage(artist);
-//                                if(images_JsonObject!=null) {
-//                                    JSONArray images_JsonArray = images_JsonObject.getJSONArray("images");
-//                                    if (images_JsonArray != null) {
-//                                        JSONObject image_medium_object = images_JsonArray.getJSONObject(2);
-//                                        if(image_medium_object!=null){
-//                                        image_url = image_medium_object.getString("url");
-//                                        if(image_url!=null) {
-//
-//                                            OkHttpClient client = new OkHttpClient();
-//                                            Request request = new Request.Builder().url(image_url).build();
-//                                            if (request != null) {
-//                                                Response response = client.newCall(request).execute();
-//
-//                                                byte[] image = response.body().bytes();
-//
-//
-//                                                if (image != null && image.length > 0) {
-//                                                    bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-//                                                }
-//                                                else bitmap = null;
-//                                            } else bitmap = null;
-//
-//                                        } else bitmap = null;
-//                                        } else bitmap = null;
-//                                    } else bitmap = null;
-//                                } else bitmap = null;
-
-                                        Concert concert = new Concert(name, venue, city, time, bitmap, event_id);
-                                        list_concerts.add(concert);
-
-
+                                Concert concert = new Concert(name, venue, city, time, bitmap, event_id);
+                                list_concerts.add(concert);
                             }
                         }
 
