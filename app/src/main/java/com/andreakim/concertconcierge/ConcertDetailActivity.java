@@ -8,6 +8,7 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -15,15 +16,20 @@ public class ConcertDetailActivity extends AppCompatActivity {
 
     private Weather mWeatherModel;
     int event_id;
+    private String temp;
+    private String description;
 
     String city, lat, lng, popularity, uri, event_name, id, time, date, ageRestriction, zip, venue_name, street, phone, venue_description;
-    private TextView txt_name, txt_city, txt_popularity, txt_uri, txt_time, txt_date, txt_ageRestriction, txt_venue, txt_phone;
+    private TextView txt_name, txt_city, txt_popularity, txt_uri, txt_time, txt_date, txt_ageRestriction, txt_venue, txt_phone, currentTemp, mDescription;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_concert_detail);
+
+         currentTemp = (TextView)findViewById(R.id.weather_temp);
+         mDescription = (TextView)findViewById(R.id.weather_desc);
 
             event_id = getIntent().getIntExtra("event_id", 0);
             txt_name = (TextView) findViewById(R.id.concert_txtview_name);
@@ -49,11 +55,42 @@ public class ConcertDetailActivity extends AppCompatActivity {
                 // get json
                 // put in mWeatherModel
                 //mWeatherModel.mDescription = ...
+                if (weatherJson != null && weatherJson.length() > 0) {
+
+                    try {
+                        temp = weatherJson.getJSONObject("main").getString("temp");
+                        JSONArray weatherArray = weatherJson.getJSONArray("weather");
+
+                        for (int i = 0; i < weatherArray.length(); i++) {
+
+                            JSONObject innerObject = weatherArray.getJSONObject(i);
+                            description = innerObject.getString("description");
+
+
+                        }
+
+
+
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+                }
                 return null;
             }
 
             @Override
             protected void onPostExecute(Void empty) {
+
+                currentTemp.setText(temp + "°F");
+                mDescription.setText(description);
+
+
+
+                    }
+
                 // 1. create the fragment & place it somewhere
                 // 2. grab values from model
                 // 3. create bundle w/values from model
@@ -62,7 +99,7 @@ public class ConcertDetailActivity extends AppCompatActivity {
 
 
             }
-        }
+
 
         private class EventAsync extends AsyncTask<Void, Void, Void> {
                 @Override

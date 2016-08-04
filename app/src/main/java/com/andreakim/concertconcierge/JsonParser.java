@@ -91,7 +91,7 @@ public class JsonParser {
         try{
 
             OkHttpClient client = new OkHttpClient();
-            String url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + ",us&APPID=" + "1908e7a47dd061ed22e0faacfd678ba8";
+            String url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + ",us&units=imperial&APPID=" + "1908e7a47dd061ed22e0faacfd678ba8";
             Request request = new Request.Builder()
                     .url(url).build();
 
