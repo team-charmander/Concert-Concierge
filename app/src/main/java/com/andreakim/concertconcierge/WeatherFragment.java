@@ -25,8 +25,8 @@ public class WeatherFragment extends Fragment{
         // 2nd - find views
         TextView currentTemp = (TextView) weatherFragment.findViewById(R.id.weather_temp);
         TextView mDescription = (TextView)weatherFragment.findViewById(R.id.weather_desc);
+
         // 3rd view - update views with .setText()
-        //currentTemp.setText();
 
 //        currentTemp.setText();
 //        mDescription.setText();

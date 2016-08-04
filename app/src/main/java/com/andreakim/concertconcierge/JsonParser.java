@@ -20,8 +20,6 @@ public class JsonParser {
     public static JSONObject getMetroID(String place,String key) {
         try {
             OkHttpClient client = new OkHttpClient();
-
-
             String metro_id_url = "http://api.songkick.com/api/3.0/search/locations.json?query=" + place + "&apikey="+key;
             Request request = new Request.Builder()
                     .url(metro_id_url).build();
