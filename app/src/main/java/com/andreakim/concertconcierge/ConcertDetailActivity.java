@@ -1,9 +1,12 @@
 package com.andreakim.concertconcierge;
 
 
+import android.annotation.TargetApi;
+import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.net.ParseException;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -22,6 +25,9 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
@@ -30,11 +36,14 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
+import static android.text.format.DateFormat.getDateFormat;
 
-public class ConcertDetailActivity extends AppCompatActivity {
+
+public class ConcertDetailActivity extends AppCompatActivity implements OnMapReadyCallback{
     int event_id;
         String city, lat, lng, popularity, uri, event_name, id, time, date, ageRestriction, zip, venue_name, street, phone, venue_description;
         private TextView txt_name, txt_city, txt_popularity, txt_uri, txt_time, txt_date, txt_ageRestriction, txt_venue, txt_phone;
+    Date formatted_date;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -145,16 +154,11 @@ public class ConcertDetailActivity extends AppCompatActivity {
             };
 
 
-           private class getMapAsync extends AsyncTask<Void, Void, Void> {
-
-            }
-
-
-            FragmentTransaction ft = fm.beginTransaction();
-            MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
-            ft.add(R.id.map_card, mapFragment);
-            ft.commit();
+//            FragmentTransaction ft = getFragmentManager().beginTransaction();
+//            MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+//            mapFragment.getMapAsync(this);
+//            ft.add(R.id.map_card, mapFragment);
+//            ft.commit();
 
 
 
@@ -174,9 +178,16 @@ public class ConcertDetailActivity extends AppCompatActivity {
             new EventAsync().execute();
         }
 
-        private class EventAsync extends AsyncTask<Void, Void, Void> {
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
+
+    private class EventAsync extends AsyncTask<Void, Void, Void> {
 
 
+
+            @TargetApi(Build.VERSION_CODES.N)
             @Override
             protected Void doInBackground(Void... voids) {
                 String key = getResources().getString(R.string.songkick_api);
@@ -195,6 +206,8 @@ public class ConcertDetailActivity extends AppCompatActivity {
                         uri = eventObject.getString("uri");
                         event_name = eventObject.getString("displayName");
                         date = eventObject.getJSONObject("start").getString("date");
+                       // DateFormat sdf = new SimpleDateFormat("h:mm a");
+                       // formatted_date = sdf.parse(date);
                         time = eventObject.getJSONObject("start").getString("time");
                         ageRestriction = eventObject.getString("ageRestriction");
                         JSONObject venue_object = eventObject.getJSONObject("venue");
@@ -220,16 +233,19 @@ public class ConcertDetailActivity extends AppCompatActivity {
                     txt_ageRestriction.setText(ageRestriction);
                 }
 
-                txt_date.setText(date);
+                java.text.DateFormat dateFormat = getDateFormat(getApplicationContext());
+ //               if (date!=null)
+ //               txt_date.setText(date);
                 txt_time.setText(time);
-                txt_popularity.setText(popularity);
+               // txt_popularity.setText(popularity);
                 //  txt_uri.setText(uri);
+
                 txt_uri.setClickable(true);
                 txt_uri.setMovementMethod(LinkMovementMethod.getInstance());
                 String text = "<a href='" + uri + "'>" + event_name + " </a>";
                 txt_uri.setText(Html.fromHtml(text));
-                txt_city.setText(city);
-                txt_phone.setText(phone);
+//                txt_city.setText(city);
+ //               txt_phone.setText(phone);
                 String venue = venue_name + "\n" + street + "\n" + zip;
                 txt_venue.setText(venue);
             }

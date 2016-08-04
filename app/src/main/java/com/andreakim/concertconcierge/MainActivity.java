@@ -6,7 +6,7 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.annotation.*;
-import android.support.v7.app.ActionBarActivity;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import android.*;
 
-import android.*;
+
 import android.content.Context;
 
 import android.content.Intent;
@@ -152,22 +152,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             locationManager.requestLocationUpdates(provider,interval,ms,locationListener );
 
             Location location = locationManager.getLastKnownLocation(provider);
-
+            if(location!=null)
             lat = location.getLatitude();
             lng=location.getLongitude();
             progressBar = (ProgressBar)findViewById(R.id.progressBar);
             updateProgressBar();
             launchDataAsyc(lat,lng);
-
-            if(location!=null) {
-                lat = location.getLatitude();
-                lng = location.getLongitude();
-                progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                updateProgressBar();
-                launchDataAsyc(lat, lng);
-            }
-
-
 
 
         }
