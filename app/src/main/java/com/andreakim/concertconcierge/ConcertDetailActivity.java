@@ -57,7 +57,7 @@ public class ConcertDetailActivity extends AppCompatActivity implements OnMapRea
 
     String city, lat, lng, popularity, uri, event_name, id, time, date, ageRestriction, zip, venue_name, street, phone, venue_description;
     private TextView txt_name, txt_city, txt_popularity, txt_uri, txt_time, txt_date, txt_ageRestriction, txt_venue, txt_phone, currentTemp, mDescription;
-
+        private  com.google.android.gms.maps.MapFragment mapFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,10 +71,9 @@ public class ConcertDetailActivity extends AppCompatActivity implements OnMapRea
         txt_time = (TextView) findViewById(R.id.concert_txtview_time);
         txt_ageRestriction = (TextView) findViewById(R.id.concert_txtAge);
         txt_venue = (TextView) findViewById(R.id.concert_txtview_venue);
-        com.google.android.gms.maps.MapFragment mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
+        mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
 
         new EventAsync().execute();
-        mapFragment.getMapAsync(this);
 
     }
 
@@ -181,6 +180,8 @@ public class ConcertDetailActivity extends AppCompatActivity implements OnMapRea
             String venue = venue_name + "\n" + street + "\n" + zip;
             txt_venue.setText(venue);
             new WeatherTask().execute();
+
+
 //            mapCard = (CardView)findViewById(R.id.map_card);
 //
 //            mapCard.setOnClickListener(new View.OnClickListener() {
@@ -200,6 +201,7 @@ public class ConcertDetailActivity extends AppCompatActivity implements OnMapRea
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         if(lat!=null&&lng!=null) {
             googleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng))).title("Marker").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
+            mapFragment.getMapAsync(this);
         }
 
     }
