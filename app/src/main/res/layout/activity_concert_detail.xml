@@ -2,24 +2,24 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:context="com.andreakim.concertconcierge.ConcertDetailActivity"
     android:layout_height="wrap_content"
 
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context="com.andreakim.concertconcierge.ConcertDetailActivity">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
+        android:id="@+id/card_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:id="@+id/card_item"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         card_view:cardCornerRadius="5dp">
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -32,88 +32,88 @@
             tools:context="com.andreakim.concertconcierge.ConcertDetailActivity">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="18dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/concert_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
                 android:src="@drawable/concerttwo" />
             <TextView
+                android:id="@+id/concert_txtview_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:text="@string/concert_name"
                 android:layout_below="@id/concert_image"
-                android:id="@+id/concert_txtview_name"/>
+                android:padding="6dp"
+                android:text="@string/concert_name"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:textStyle="bold"
                 android:id="@+id/concert_txtview_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/concert_txtview_name"
+                android:padding="6dp"
                 android:text="@string/concert_time"
-                android:layout_below="@id/concert_txtview_name" />
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="City"
-                android:padding="6dp"
                 android:id="@+id/concert_txtcity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/concert_txtview_time"
-                android:textStyle="bold"
-                android:layout_alignParentStart="true" />
+                android:padding="6dp"
+                android:text="City"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="6dp"
                 android:id="@+id/concert_txtview_venue"
-                android:textStyle="bold"
-                android:text="@string/concert_venue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/concert_txtcity"
+                android:padding="6dp"
+                android:text="@string/concert_venue"
+                android:textStyle="bold"
                 />
 
             <TextView
+                android:id="@+id/concert_txtUri"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="URi"
-                android:padding="6dp"
-                android:textStyle="bold"
-                android:id="@+id/concert_txtUri"
                 android:layout_below="@+id/concert_txtview_venue"
+                android:padding="6dp"
+                android:text="URi"
+                android:textStyle="bold"
                 />
             <TextView
+                android:id="@+id/concert_txtAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/age"
-                android:padding="6dp"
-                android:textStyle="bold"
-                android:id="@+id/concert_txtAge"
                 android:layout_below="@+id/concert_txtview_venue"
+                android:layout_marginStart="32dp"
                 android:layout_toRightOf="@+id/concert_txtUri"
-                android:layout_marginStart="32dp" />
+                android:padding="6dp"
+                android:text="@string/age"
+                android:textStyle="bold" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/map_card"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/weather_card"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="16dp"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/weather_card"
-        android:layout_height="200dp"
-        android:layout_width="match_parent"
-        android:id="@+id/map_card"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_centerHorizontal="true"
         card_view:cardCornerRadius="5dp">
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -124,17 +124,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/map"
-            android:paddingBottom="12dp"/>
+            android:paddingBottom="12dp"
+            android:text="@string/map"/>
             <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:map="http://schemas.android.com/apk/res-auto"
-                android:name="com.google.android.gms.maps.MapFragment"
                 android:id="@+id/map"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                mapType="normal"
+                android:name="com.google.android.gms.maps.MapFragment"
                 cameraZoom="15"
-                liteMode="true"/>
+                liteMode="true"
+                mapType="normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
@@ -144,40 +144,46 @@
 
 
 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/weather_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/card_item"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="24dp"
+    android:background="@drawable/weather"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:layout_below="@+id/card_item"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:id="@+id/weather_card"
-    android:layout_marginTop="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_centerHorizontal="true"
     card_view:cardCornerRadius="5dp">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/weather"
     tools:context="com.andreakim.concertconcierge.ConcertDetailActivity">
 
             <TextView
+                android:id="@+id/weather_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_marginBottom="16dp"
                 android:padding="6dp"
-                android:id="@+id/weather_temp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 />
             <TextView
-                android:layout_width="wrap_content"
-                android:padding="6dp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
                 android:id="@+id/weather_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:padding="6dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 />
 </RelativeLayout>
 </android.support.v7.widget.CardView>
