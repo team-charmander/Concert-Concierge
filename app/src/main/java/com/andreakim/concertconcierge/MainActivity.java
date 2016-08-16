@@ -5,6 +5,7 @@ import android.location.LocationManager;
 import android.support.annotation.*;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private ConcertAdapter concertAdapter;
     static private ArrayList<Concert> list_concerts;
     String place;
+    ImageView imageView;
     String name, date, venue, time, artist, venue_lat, venue_lng, city,image_url;
     int event_id = 0;
     private GoogleApiClient mGoogleApiClient;
@@ -95,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        imageView = (ImageView)findViewById(R.id.imageTop);
+
 
         buildGoogleApiClient();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
