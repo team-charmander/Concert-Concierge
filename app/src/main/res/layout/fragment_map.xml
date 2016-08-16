@@ -5,7 +5,8 @@
         android:name="com.google.android.gms.maps.MapFragment"
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
         map:cameraZoom="13"
         map:mapType="normal"
         map:liteMode="true"/>

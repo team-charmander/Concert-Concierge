@@ -89,8 +89,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }
     };
 
-
-
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,9 +96,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        imageView = (ImageView)findViewById(R.id.imageTop);
-
+        imageView = (ImageView) findViewById(R.id.imageTop);
+        imageView.setImageResource(R.drawable.concertcon);
+        imageView.setVisibility(View.VISIBLE);
+      //  imageView.setVisibility(View.GONE);  // <- to be used later
 
         buildGoogleApiClient();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -112,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         crta.setCostAllowed(true);
         crta.setPowerRequirement(Criteria.POWER_LOW);
         String provider = LocationManager.GPS_PROVIDER;
+
+
         try {
             long interval = 100;
             float ms = 1;
@@ -131,20 +132,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             }
 
-
-            locationManager.requestLocationUpdates(provider,interval,ms,locationListener );
-
+            locationManager.requestLocationUpdates(provider, interval, ms, locationListener);
             Location location = locationManager.getLastKnownLocation(provider);
-            if(location!=null)
-            lat = location.getLatitude();
-            lng=location.getLongitude();
-            progressBar = (ProgressBar)findViewById(R.id.progressBar);
+
+            if (location != null)
+                lat = location.getLatitude();
+            lng = location.getLongitude();
+
+            progressBar = (ProgressBar) findViewById(R.id.progressBar);
             updateProgressBar();
-            launchDataAsyc(lat,lng);
+            launchDataAsyc(lat, lng);
+            imageView.setVisibility(View.GONE);
 
-
-        }
-        catch (SecurityException e){
+        } catch (SecurityException e) {
             e.printStackTrace();
         }
 
@@ -172,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
     }
+
 
     public void updateProgressBar(){
         progressBar.setVisibility(View.VISIBLE);
@@ -221,12 +222,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }
     }
 
-
     @Override
     public void onConnectionSuspended(int i) {
 
     }
-
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

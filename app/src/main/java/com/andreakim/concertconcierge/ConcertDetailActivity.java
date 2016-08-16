@@ -49,7 +49,6 @@ import static android.text.format.DateFormat.getDateFormat;
 
 public class ConcertDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     Date formatted_date;
-
     int event_id;
     private String temp;
     private String description;
@@ -74,12 +73,7 @@ public class ConcertDetailActivity extends AppCompatActivity implements OnMapRea
         mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
 
         new EventAsync().execute();
-
     }
-
-
-
-
 
     private class WeatherTask extends AsyncTask<Void, Void, Void> {
         @TargetApi(Build.VERSION_CODES.N)
@@ -89,7 +83,7 @@ public class ConcertDetailActivity extends AppCompatActivity implements OnMapRea
             // fetch weather
             // get json
             // put in mWeatherModel
-            //mWeatherModel.mDescription = ...
+            //  mWeatherModel.mDescription = ...
             if (weatherJson != null && weatherJson.length() > 0) {
 
                 try {
@@ -114,7 +108,6 @@ public class ConcertDetailActivity extends AppCompatActivity implements OnMapRea
                 mDescription.setText(description);
             }
         }
-
 
     private class EventAsync extends AsyncTask<Void, Void, Void> {
         @Override
