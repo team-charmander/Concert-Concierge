@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         JSONArray jsonArray = concert_jsonObject.getJSONObject("resultsPage").getJSONObject("results").getJSONArray("event");
                         int length = jsonArray.length();
                         if (length > 0) {
-                            for (int i = 0; i < length; i++) {
+                            for (int i = 1; i < length; i++) {
                                 JSONObject innerObject = jsonArray.getJSONObject(i);
                                 name = innerObject.getString("displayName");
                                 date = innerObject.getJSONObject("start").getString("date");
